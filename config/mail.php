@@ -28,14 +28,23 @@ return [
     | sending an e-mail. You will specify which one you are using for your
     | mailers below. You are free to add additional mailers as required.
     |
+<<<<<<< HEAD
     | Supported: "smtp", "sendmail", "mailgun", "ses",
     |            "postmark", "log", "array", "failover"
+=======
+    | Supported: "smtp", "sendmail", "mailgun", "ses", "ses-v2",
+    |            "postmark", "log", "array", "failover", "roundrobin"
+>>>>>>> b63bbc5 (useCase(creerPartie,effectuerPartie))
     |
     */
 
     'mailers' => [
         'smtp' => [
             'transport' => 'smtp',
+<<<<<<< HEAD
+=======
+            'url' => env('MAIL_URL'),
+>>>>>>> b63bbc5 (useCase(creerPartie,effectuerPartie))
             'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
             'port' => env('MAIL_PORT', 587),
             'encryption' => env('MAIL_ENCRYPTION', 'tls'),
@@ -49,15 +58,26 @@ return [
             'transport' => 'ses',
         ],
 
+<<<<<<< HEAD
         'mailgun' => [
             'transport' => 'mailgun',
+=======
+        'postmark' => [
+            'transport' => 'postmark',
+            // 'message_stream_id' => null,
+>>>>>>> b63bbc5 (useCase(creerPartie,effectuerPartie))
             // 'client' => [
             //     'timeout' => 5,
             // ],
         ],
 
+<<<<<<< HEAD
         'postmark' => [
             'transport' => 'postmark',
+=======
+        'mailgun' => [
+            'transport' => 'mailgun',
+>>>>>>> b63bbc5 (useCase(creerPartie,effectuerPartie))
             // 'client' => [
             //     'timeout' => 5,
             // ],
@@ -84,6 +104,17 @@ return [
                 'log',
             ],
         ],
+<<<<<<< HEAD
+=======
+
+        'roundrobin' => [
+            'transport' => 'roundrobin',
+            'mailers' => [
+                'ses',
+                'postmark',
+            ],
+        ],
+>>>>>>> b63bbc5 (useCase(creerPartie,effectuerPartie))
     ],
 
     /*

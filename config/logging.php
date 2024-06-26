@@ -3,6 +3,10 @@
 use Monolog\Handler\NullHandler;
 use Monolog\Handler\StreamHandler;
 use Monolog\Handler\SyslogUdpHandler;
+<<<<<<< HEAD
+=======
+use Monolog\Processor\PsrLogMessageProcessor;
+>>>>>>> b63bbc5 (useCase(creerPartie,effectuerPartie))
 
 return [
 
@@ -61,6 +65,10 @@ return [
             'driver' => 'single',
             'path' => storage_path('logs/laravel.log'),
             'level' => env('LOG_LEVEL', 'debug'),
+<<<<<<< HEAD
+=======
+            'replace_placeholders' => true,
+>>>>>>> b63bbc5 (useCase(creerPartie,effectuerPartie))
         ],
 
         'daily' => [
@@ -68,6 +76,10 @@ return [
             'path' => storage_path('logs/laravel.log'),
             'level' => env('LOG_LEVEL', 'debug'),
             'days' => 14,
+<<<<<<< HEAD
+=======
+            'replace_placeholders' => true,
+>>>>>>> b63bbc5 (useCase(creerPartie,effectuerPartie))
         ],
 
         'slack' => [
@@ -76,6 +88,10 @@ return [
             'username' => 'Laravel Log',
             'emoji' => ':boom:',
             'level' => env('LOG_LEVEL', 'critical'),
+<<<<<<< HEAD
+=======
+            'replace_placeholders' => true,
+>>>>>>> b63bbc5 (useCase(creerPartie,effectuerPartie))
         ],
 
         'papertrail' => [
@@ -87,6 +103,10 @@ return [
                 'port' => env('PAPERTRAIL_PORT'),
                 'connectionString' => 'tls://'.env('PAPERTRAIL_URL').':'.env('PAPERTRAIL_PORT'),
             ],
+<<<<<<< HEAD
+=======
+            'processors' => [PsrLogMessageProcessor::class],
+>>>>>>> b63bbc5 (useCase(creerPartie,effectuerPartie))
         ],
 
         'stderr' => [
@@ -97,16 +117,29 @@ return [
             'with' => [
                 'stream' => 'php://stderr',
             ],
+<<<<<<< HEAD
+=======
+            'processors' => [PsrLogMessageProcessor::class],
+>>>>>>> b63bbc5 (useCase(creerPartie,effectuerPartie))
         ],
 
         'syslog' => [
             'driver' => 'syslog',
             'level' => env('LOG_LEVEL', 'debug'),
+<<<<<<< HEAD
+=======
+            'facility' => LOG_USER,
+            'replace_placeholders' => true,
+>>>>>>> b63bbc5 (useCase(creerPartie,effectuerPartie))
         ],
 
         'errorlog' => [
             'driver' => 'errorlog',
             'level' => env('LOG_LEVEL', 'debug'),
+<<<<<<< HEAD
+=======
+            'replace_placeholders' => true,
+>>>>>>> b63bbc5 (useCase(creerPartie,effectuerPartie))
         ],
 
         'null' => [

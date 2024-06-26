@@ -8,6 +8,10 @@
 .env
 .env.backup
 .env.production
+<<<<<<< HEAD
+=======
+.phpunit.result.cache
+>>>>>>> b63bbc5 (useCase(creerPartie,effectuerPartie))
 Homestead.json
 Homestead.yaml
 auth.json

@@ -1,6 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Facade;
+<<<<<<< HEAD
+=======
+use Illuminate\Support\ServiceProvider;
+>>>>>>> b63bbc5 (useCase(creerPartie,effectuerPartie))
 
 return [
 
@@ -56,7 +60,11 @@ return [
 
     'url' => env('APP_URL', 'http://localhost'),
 
+<<<<<<< HEAD
     'asset_url' => env('ASSET_URL', '/'),
+=======
+    'asset_url' => env('ASSET_URL'),
+>>>>>>> b63bbc5 (useCase(creerPartie,effectuerPartie))
 
     /*
     |--------------------------------------------------------------------------
@@ -140,7 +148,11 @@ return [
 
     'maintenance' => [
         'driver' => 'file',
+<<<<<<< HEAD
         // 'store'  => 'redis',
+=======
+        // 'store' => 'redis',
+>>>>>>> b63bbc5 (useCase(creerPartie,effectuerPartie))
     ],
 
     /*
@@ -154,6 +166,7 @@ return [
     |
     */
 
+<<<<<<< HEAD
     'providers' => [
 
         /*
@@ -182,6 +195,9 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
 
+=======
+    'providers' => ServiceProvider::defaultProviders()->merge([
+>>>>>>> b63bbc5 (useCase(creerPartie,effectuerPartie))
         /*
          * Package Service Providers...
          */
@@ -194,8 +210,12 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+<<<<<<< HEAD
 
     ],
+=======
+    ])->toArray(),
+>>>>>>> b63bbc5 (useCase(creerPartie,effectuerPartie))
 
     /*
     |--------------------------------------------------------------------------
@@ -209,7 +229,11 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
+<<<<<<< HEAD
         // 'ExampleClass' => App\Example\ExampleClass::class,
+=======
+        // 'Example' => App\Facades\Example::class,
+>>>>>>> b63bbc5 (useCase(creerPartie,effectuerPartie))
     ])->toArray(),
 
 ];

@@ -18,9 +18,20 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+<<<<<<< HEAD
         'name',
         'email',
         'password',
+=======
+        'login',
+        'nom',
+        'prenom',
+        'classement',
+        'visibilite',
+        'status',
+        'email',
+        'password'
+>>>>>>> b63bbc5 (useCase(creerPartie,effectuerPartie))
     ];
 
     /**
@@ -40,5 +51,9 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+<<<<<<< HEAD
+=======
+        'password' => 'hashed',
+>>>>>>> b63bbc5 (useCase(creerPartie,effectuerPartie))
     ];
 }

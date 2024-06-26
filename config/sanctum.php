@@ -41,8 +41,13 @@ return [
     |--------------------------------------------------------------------------
     |
     | This value controls the number of minutes until an issued token will be
+<<<<<<< HEAD
     | considered expired. If this value is null, personal access tokens do
     | not expire. This won't tweak the lifetime of first-party sessions.
+=======
+    | considered expired. This will override any values set in the token's
+    | "expires_at" attribute, but first-party sessions are not affected.
+>>>>>>> b63bbc5 (useCase(creerPartie,effectuerPartie))
     |
     */
 
@@ -50,6 +55,24 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+<<<<<<< HEAD
+=======
+    | Token Prefix
+    |--------------------------------------------------------------------------
+    |
+    | Sanctum can prefix new tokens in order to take advantage of numerous
+    | security scanning initiatives maintained by open source platforms
+    | that notify developers if they commit tokens into repositories.
+    |
+    | See: https://docs.github.com/en/code-security/secret-scanning/about-secret-scanning
+    |
+    */
+
+    'token_prefix' => env('SANCTUM_TOKEN_PREFIX', ''),
+
+    /*
+    |--------------------------------------------------------------------------
+>>>>>>> b63bbc5 (useCase(creerPartie,effectuerPartie))
     | Sanctum Middleware
     |--------------------------------------------------------------------------
     |
@@ -60,8 +83,14 @@ return [
     */
 
     'middleware' => [
+<<<<<<< HEAD
         'verify_csrf_token' => App\Http\Middleware\VerifyCsrfToken::class,
         'encrypt_cookies' => App\Http\Middleware\EncryptCookies::class,
+=======
+        'authenticate_session' => Laravel\Sanctum\Http\Middleware\AuthenticateSession::class,
+        'encrypt_cookies' => App\Http\Middleware\EncryptCookies::class,
+        'verify_csrf_token' => App\Http\Middleware\VerifyCsrfToken::class,
+>>>>>>> b63bbc5 (useCase(creerPartie,effectuerPartie))
     ],
 
 ];
