@@ -14,7 +14,12 @@
                     <div class="text-red-500 justify-center items-center flex">{{ $message }}</div>
                 @enderror
             </div>
-
+            <div class="w-full" id="ckbox">
+                <fieldset class="border-2">
+                    <legend class="ml-5">Description</legend>
+                    <textarea class="w-full h-full"  id="editor" name="description" ></textarea>
+                </fieldset>
+            </div>
             <div class="w-full bg-white flex justify-center items-center p-5">
                 <div class="text-blue-900 text-lg flex justify-center items-center m-auto">
                     <label class="text-lg font-bold" for="date">Date :</label>
@@ -80,13 +85,27 @@
                         <button type="button" class="add-proposition h-10 flex justify-center items-center mb-3 bg-blue-900 rounded-full p-4 font-bold text-white text-xl">+</button>
                     </div>
                 </div>
+                
             </div>
-
+            
             <div class="flex justify-center items-center p-5">
                 <button class="h-8 flex justify-center items-center mb-3 bg-blue-900 rounded-full p-4 font-bold text-white text-sm" type="button" id="addQuestion">Ajouter une question</button>
             </div>
            
-
+            <div class="text-black flex justify-center items-center space-x-auto">
+                <div class="m-auto w-1/6">
+                    <select class="w-full h-12 text-center" name="niveau" id="">
+                        <option value="">Choisir le niveau</option>
+                        @foreach ($niveaux as $niveau)
+                            <option value="{{$niveau->nom}}">{{$niveau->nom}}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="m-auto">
+                    <input type="checkbox" name="joueurAnonyme"  value="1" id="">
+                    <label for="">Cette évaluation est accessible aux joueurs anonymes</label>
+                </div>
+            </div>
             <div class="flex justify-center items-center p-5">
                 <input class="h-12 bg-blue-900 rounded-lg p-3 font-bold text-white cursor-pointer" type="submit" value="Suivant">
             </div>

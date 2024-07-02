@@ -5,13 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     @vite('resources/css/app.css')
+    <script src="https://cdn.ckbox.io/ckbox/2.4.0/ckbox.js"></script>
     <title>AfriKulture | Administration</title>
 </head>
 <body class="bg-white h-screen">
     @if (Auth()->user()->status == 'admin')
         @include('afrikulture.composants.header')
         <div class="flex justify-end items-start w-full relative h-screen">
-             <div class="bg-[#11235A]  w-[10%] h-screen fixed left-0">
+             <div class="bg-blue-800  w-[10%] h-screen fixed left-0">
                  <div class="pt-20 ">
                      <a class="" href="{{route('AdminDashboard')}}">
                          <div  class="h-18 flex justify-center items-center">
@@ -45,24 +46,20 @@
                      </a>
                      <a class="" href="{{route('AdminParties')}}">
                          <div  class=" h-10 flex justify-center items-center text-center text-white hover:bg-white hover:text-blue-900 hover:rounded-l-full font-bold text-lg">
-                             Evaluations
+                             Parties
                          </div>
                      </a>
-                     <a class="" href="">
+                     <a class="" href="{{route('EnseignantPlanning')}}">
                          <div  class=" h-10 flex justify-center items-center text-center text-white hover:bg-white hover:text-blue-900 hover:rounded-l-full font-bold text-lg">
                              Planning
                          </div>
                      </a>
                      <a class="" href="">
                          <div  class=" h-10 flex justify-center items-center text-center text-white hover:bg-white hover:text-blue-900 hover:rounded-l-full font-bold text-lg">
-                             Étudiants
+                             Joueurs
                          </div>
                      </a>
-                     <a class="" href="">
-                         <div  class=" h-10 flex justify-center items-center text-center text-white hover:bg-white hover:text-blue-900 hover:rounded-l-full font-bold text-lg">
-                             Classes
-                         </div>
-                     </a>
+                     
                  </div>
              </div>
              <div class="flex justify-end items-center w-[90%] ">

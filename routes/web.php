@@ -26,10 +26,10 @@ Route::prefix('/')->controller(App\Http\Controllers\Afrikulture::class)->group(f
             Route::get('/partie/avenir/','partieAvenir')->name('partieAvenir');
             Route::get('/partie/traitement/{id}','traitementPartie')->name('traitementPartie');
             Route::post('/partie/traitement/{id}','postTraitementPartie')->name('postTraitementPartie');
-            // Route::get('/partie','partie')->name('EtudiantPartie');
-    //         Route::get('/planning','planning')->name('planning');
-    //         Route::get('/planning','planning')->name('EtudiantPlanning');
-    //         Route::get('/layout','layout')->name('Etudiantlayout');
+            // Route::get('/partie','partie')->name('PartiePartie');
+            Route::get('/planning','planning')->name('planning');
+    //         Route::get('/planning','planning')->name('PartiePlanning');
+    //         Route::get('/layout','layout')->name('Partielayout');
 
 
         });
@@ -37,6 +37,7 @@ Route::prefix('/')->controller(App\Http\Controllers\Afrikulture::class)->group(f
     Route::middleware(['auth'])->group(function () {
         Route::prefix('/admin')->controller(App\Http\Controllers\Admin::class)->group(function(){
             Route::get('/dashboard','dashboard')->name('AdminDashboard');
+            Route::get('/test','test')->name('test');
             Route::get('/partie','parties')->name('AdminParties');
             Route::get('/partie/{id}','partie')->where('id', '[0-9]+')->name('AdminPartie');
             Route::get('/partie/ajouter','AdminCreePartie')->name('AdminCreePartie');
@@ -44,8 +45,8 @@ Route::prefix('/')->controller(App\Http\Controllers\Afrikulture::class)->group(f
             Route::get('/partie/bilan','AdminBilanPartie')->name('AdminBilanPartie');
             Route::post('/partie/bilan','AdminPostBilanPartie')->name('AdminPostBilanPartie');
             Route::get('/partie/validation','AdminValidationPartie')->name('AdminValidationPartie');
-    //         Route::get('/planning','planning')->name('EnseignantPlanning');
-    //         Route::get('/etudiants','etudiants')->name('EnseignantEtudiants');
+            Route::get('/planning','planning')->name('EnseignantPlanning');
+    //         Route::get('/etudiants','etudiants')->name('EnseignantParties');
     //         Route::get('/classes','classes')->name('EnseignantClasses');
     //         Route::get('/classes/{id}','classesEvalu')->where('id', '[0-9]+')->name('classesEvalu');
 

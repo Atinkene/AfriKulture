@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Partie;
 use App\Http\Requests\LoginRequest;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+
 
 
 class Afrikulture extends Controller
@@ -14,13 +16,13 @@ class Afrikulture extends Controller
     public function login(){
         //   dd(Auth::user());
         //   $user = User::create([
-        //     'login' => '123457', // Remplacez par le numéro souhaité
-        //     'nom' => 'BASSENE', // Remplacez par le nom souhaité
-        //     'prenom' => 'Massina Sylvanus', // Remplacez par le prénom souhaité
+        //     'login' => 'simon', // Remplacez par le numéro souhaité
+        //     'nom' => 'KAMATE', // Remplacez par le nom souhaité
+        //     'prenom' => 'Simon', // Remplacez par le prénom souhaité
         //     'classement' => 1, // Remplacez par le statut souhaité
         //     'visibilite' => 1, // Remplacez par le statut souhaité
         //     'status' => 'joueur', // Remplacez par le statut souhaité
-        //     'email' => 'massinasylvanus@afrikulture.sn', // Remplacez par l'e-mail souhaité
+        //     'email' => 'simonkamate@afrikulture.sn', // Remplacez par l'e-mail souhaité
         //     'password' => Hash::make('password'), // Remplacez par le mot de passe souhaité
         // ]);
           return view ('afrikulture.login',[
@@ -53,6 +55,15 @@ class Afrikulture extends Controller
        }
     
        public function accueil(){
-        return view('afrikulture.accueil');
+        $parties = Partie::where('dateDebut', '<', now())->paginate(1);
+        $couleurs=[];
+        foreach ($parties as $key => $partie) {
+            $couleurs = $partie->couleurFond;
+        }
+        // dd($couleurs);
+        return view('afrikulture.accueil',[
+            'parties' => $parties,
+            'couleurs' => $couleurs,
+        ]);
        }
 }

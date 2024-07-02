@@ -5,13 +5,19 @@
             <p class="text-blue-900 font-bold text-2xl italic">Bilan de l'évaluation : {{$partie['nom']}}</p>
         </div>
         <div class="justify-center items-center shadow-lg p-5">
-            <form action="" method="post">
+            <form action="" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="w-full bg-white">
                      <span class="text-blue-900 text-lg flex justify-center items-center">
-                        <label class="text-lg font-bold" for="nom">Nom de l'évaluation : </label>
+                        <label class="text-lg font-bold" for="nom">Nom de la partie : </label>
                         <input readonly name="nom" type="text" value=" {{$partie['nom']}}" placeholder="Entrez le libellé de l'évaluation"><br> 
                      </span>
+                </div>
+                <div class="w-full" id="ckbox">
+                    <fieldset class="border-2">
+                        <legend class="ml-5">Description</legend>
+                        <textarea readonly class="w-full h-full"  id="editor" name="description"  >{{$partie['description']}}</textarea>
+                    </fieldset>
                 </div>
                 <div class="w-full bg-white flex justify-center items-center p-5">
                     <div class="text-blue-900 text-lg flex justify-center items-center m-auto">
@@ -43,8 +49,8 @@
                             </div>
                             @foreach ($question['propositions'] as $slug => $proposition)
                                 <div class="propositions p-1">
-                                   <input class="ml-16" type="checkbox" name="corrections[{{$index}}][]" id="" value="{{$proposition}}">{{$index}}
-                                   <span class="ml-16">{{$slug+1}}.</span><input readonly class="ml-2 w-[80%]" type="text" value="{{$proposition}}" name="propositions[0][]" placeholder="Entrez une proposition"><br><br>
+                                   <input class="ml-16" type="checkbox" name="corrections[{{$index}}][]" id="" value="{{$proposition}}">
+                                   <span class="ml-4">{{$slug+1}}.</span><input readonly class="ml-2 w-[80%]" type="text" value="{{$proposition}}" name="propositions[0][]" placeholder="Entrez une proposition"><br><br>
                                 </div>
                             @endforeach
                             
@@ -53,7 +59,38 @@
                     @endforeach
                     
                 </div>
-               
+                <div class="text-black flex justify-center items-center space-x-auto rounded-lg shadow-lg p-5">
+                    <div class="m-auto w-1/6">
+                        <div class="w-full h-12 text-center"shadow-inner id="">
+                                <span>Niveau choisi : </span>
+                                {{$partie['niveau']}}
+                            </fieldset>
+                        </div>
+                    </div>
+                    <div class="m-auto">
+                        @if ($partie['joueurAnonyme'])
+                            <input checked readonly type="checkbox" name="joueurAnonyme"  value="1" id="">
+                        @else
+                        <input type="checkbox" name="joueurAnonyme"  value="1" id="">
+                            
+                        @endif
+                        <label for="">Cette évaluation est accessible aux joueurs anonymes</label>
+                    </div>
+                </div>
+                <div class="text-black flex justify-center items-center space-x-auto rounded-lg shadow-lg p-5 w-full">
+                    <fieldset class="m-auto border-2 p-3 rounded-lg">
+                        <legend>miniature</legend>
+                        <input type="file" name="miniature" id="">
+                    </fieldset>
+                    <fieldset class="m-auto border-2 p-3 rounded-lg">
+                        <legend>Image de fond</legend>
+                        <input type="file" name="imageFond" id="">
+                    </fieldset>
+                    <fieldset class="m-auto border-2 p-3 rounded-lg">
+                        <legend>Couleur de fond</legend>
+                        <input type="color" name="couleurFond" id="">
+                    </fieldset>
+                </div>
                 <div class="flex justify-center items-center p-5">
                     <div class="flex justify-center items-center p-5">
                         <input class="h-12 bg-blue-900 rounded-lg p-3 font-bold text-white cursor-pointer" type="submit" value="Suivant">

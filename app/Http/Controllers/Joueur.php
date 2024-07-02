@@ -9,7 +9,7 @@ use App\Models\Question;
 use App\Models\Proposition;
 use App\Models\Partiejoueur;
 use App\Models\Choix;
-use App\Models\Score;
+use App\Models\Resultat;
 use Carbon\Carbon;
 
 class Joueur extends Controller
@@ -23,10 +23,17 @@ class Joueur extends Controller
     return view('joueur.dashboard');
    }
    public function JoueurParties(){
-      $resultatExist = Score::where('joueur',auth()->id())->value('partie');
-      $note = Score::where('joueur',auth()->id())->value('score');
-      $partie = Partie::where('id', $resultatExist)->get();
-      // dd($resultatExist);
+      $resultatExists = Resultat::where('joueur',auth()->id())->distinct()->pluck('partie');
+      // dd($resultatExists);
+      $partie=[];
+      $note=[];
+      foreach ($resultatExists as $key => $resultatExist) {
+         $partie[$key] = Partie::where('id', $resultatExist)->first();
+         $note[$key] = Resultat::where('joueur',auth()->id())
+         ->where('partie',$resultatExist)
+         ->value('score');
+      }
+      // dd($note);
       return view('joueur.parties',[
          'parties' => $partie,
          'note' => $note,
@@ -43,16 +50,28 @@ class Joueur extends Controller
 
    public function traitementPartie($id){
       $partie = Partie::where('id',$id)->first();
-      $questions = Question::where('partie',$id)->get();
-      foreach ($questions as $question) {  
-         $propositions[] = Proposition::where('question',$question->id)->get();
-      }
-      // dd($partie, $questions, $propositions);
-      return view('joueur.traitementPartie',[
-         'partie' => $partie ,
-         'propositions' => $propositions ,
-         'questions' => $questions
-      ]);
+      $score = Resultat::where('joueur',auth()->id())
+      ->where('partie',$partie->id)
+      ->count();
+      // dd($score);
+      if ($score !== 0) {
+         return redirect()->route('partieAvenir')->with('message', 'Vous avez déjà joué à cette partie!');
+     } elseif ($partie->dateDebut > now()) {
+         return redirect()->route('partieAvenir')->with('message', 'Vous ne pouvez pas encore jouer à cette partie!');
+     } elseif ($partie->dateDebut <= now()) {
+         $questions = Question::where('partie', $id)->get();
+         $propositions = [];
+         foreach ($questions as $question) {
+             $propositions[] = Proposition::where('question', $question->id)->get();
+         }
+         // dd($partie, $questions, $propositions);
+         return view('joueur.traitementPartie', [
+             'partie' => $partie,
+             'propositions' => $propositions,
+             'questions' => $questions
+         ]);
+     }
+      
    }
 
    public function postTraitementPartie(Request $request, $id){
@@ -88,7 +107,7 @@ class Joueur extends Controller
       }
       //   dd($totalTrouve);
      
-      $resultat = Score::create([
+      $resultat = Resultat::create([
          'score'=> $totalTrouve,
          'joueur' => auth()->id(),
          'partie' => $id

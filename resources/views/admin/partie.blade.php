@@ -8,8 +8,8 @@
             <form action="" method="post">
                 @csrf
                 <div class="w-full bg-white">
-                     <span class="text-blue-900 text-lg flex justify-center items-center">
-                        <input readonly name="nom" type="text" value=" {{$partie['nom']}}" class="text-2xl font-bold"><br> 
+                     <span class="text-blue-900  flex justify-center items-center">
+                        <input class="text-center font-bold text-2xl" readonly name="nom" type="text" value=" {{$partie['nom']}}" class="text-2xl font-bold"><br> 
                      </span>
                 </div>
                 <div class="flex justify-center items-center w-full space-x-2 p-3">
@@ -20,7 +20,7 @@
                 <div class="w-full bg-white flex justify-center items-center p-5 relative ">
                     <div class="text-blue-900 text-lg flex justify-center items-center m-auto">
                         <label class="text-lg font-bold" for="date">Date :</label>
-                        <input readonly name="date" value=" {{$partie['dateDebutHeure']}}" type="text"><br>
+                        <input readonly name="date" value=" {{$partie['dateDebut']}}" type="text"><br>
                      </div>
                      
                      <div class="text-blue-900 text-lg flex justify-center items-center m-auto">
@@ -47,12 +47,12 @@
                                     @if ($item['question'] == $question->id)
                                         @if ($item['estCorrecte']==1)
                                             <div class="propositions p-1">
-                                                <input class="ml-16" type="checkbox" name="reponses[{{$index}}][]" id="" value="{{$item['libelle']}}" readonly checked>
+                                                <input class="ml-16" type="checkbox" readonly name="reponses[{{$index}}][]" id="" value="{{$item['libelle']}}" readonly checked>
                                                 <span class="ml-16">{{++$key}}.</span><input readonly class="ml-2 w-[80%]" type="text" value="{{$item['libelle']}}" name="propositions[0][]" placeholder="Entrez une proposition"><br><br>
                                             </div>
                                         @else
                                             <div class="propositions p-1">
-                                                <input class="ml-16" type="checkbox" name="reponses[{{$index}}][]" id="" value="{{$item['libelle']}}" readonly >
+                                                <input class="ml-16" type="checkbox" readonly name="reponses[{{$index}}][]" id="" value="{{$item['libelle']}}" readonly >
                                                 <span class="ml-16">{{++$key}}.</span><input readonly class="ml-2 w-[80%]" type="text" value="{{$item['libelle']}}" name="propositions[0][]" placeholder="Entrez une proposition"><br><br>
                                             </div>
                                         @endif

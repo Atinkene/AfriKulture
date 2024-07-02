@@ -10,11 +10,16 @@ class Partie extends Model
     use HasFactory;
     protected $fillable = [
         'nom',
-        'duree',
-        'visibilite',
-        'niveau',
         'dateDebut',
         'HeureDebut',
+        'duree',
+        'visibilite',
+        'joueurAnonyme',
+        'description',
+        'miniature',
+        'imageFond',
+        'couleurFond',
+        'niveau',
         'admin'
     ];
             

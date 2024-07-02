@@ -8,10 +8,10 @@
     
     <title>AfriKulture | Joueur</title>
 </head>
-<body class="bg-white">
+<body class="bg-[white]">
     @include('afrikulture.composants.header')
    <div class="flex justify-end items-start w-full relative h-screen">
-        <div class="bg-[#11235A] w-[10%] h-screen fixed left-0">
+        <div class="bg-blue-800 w-[10%] h-screen fixed left-0">
             <div class="pt-20 ">
                 <a class="" href="{{route('JoueurDashboard')}}">
                     <div  class="h-18 flex justify-center items-center">

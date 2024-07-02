@@ -5,12 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Score extends Model
+class Distinctionjoueurs extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'joueur',
-        'score',
-        'partie',
+        'distinction',
+        'joueur'
 ];
 }

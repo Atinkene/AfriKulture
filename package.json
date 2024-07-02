@@ -12,5 +12,10 @@
         "postcss": "^8.4.38",
         "tailwindcss": "^3.4.4",
         "vite": "^5.0.0"
+    },
+    "dependencies": {
+        "ckeditor": "^4.12.1",
+        "ckeditor4": "^4.24.0",
+        "ckeditor5": "^42.0.0"
     }
 }

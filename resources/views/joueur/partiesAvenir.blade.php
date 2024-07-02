@@ -5,7 +5,11 @@
             <span class="font-bold text-blue-900 text-lg flex justify-center items-center">
                 Mes Parties en attente
             </span>
-            
+            @if(Session::has('message'))
+                <div class="text-red-500">
+                    {{ Session::get('message') }}
+                </div>
+            @endif
             <table class="mt-5 shadow-md shadow-blue-900/400 rounded-bl-2xl rounded-th-2xl space-y-10 w-full pb-5 p-5">
                 <thead class="bg-blue-900 h-10 text-white shadow-md shadow-blue-900/400">
                     <th>Nom</th>
@@ -26,4 +30,5 @@
             </table>
        </div>
     </div>
+    
 @endsection

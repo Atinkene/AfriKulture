@@ -1,4 +1,4 @@
-@extends('enseignant.layout')
+@extends('admin.layout')
 @section('content')
     <div class="w-[95%] m-auto max-h-screen overflow-visible mt-20">
        <div class="space-y-5  w-full bg-white">
@@ -7,9 +7,9 @@
                     Planning
                 </span>
                 
-                <div class=" justify-center items-center mt-3 grid grid-cols-3 grid-row-2 gap-y-0">
+                <div class=" justify-center items-center mt-3 grid grid-cols-3 grid-row-2 gap-y-10">
                     @foreach ($planElems as $key=>$plan)
-                        <div class="shadow shadow-gray-600 rounded-bl-full rounded-tr-full  px-20  grid grid-cols-1 gap-y-0 items-center text-center text-blue-900 m-auto">
+                        <div class="shadow shadow-gray-600 rounded-bl-full rounded-tr-full  px-20 w-  grid grid-cols-1 gap-y-0 items-center text-center text-blue-900">
                             <span class="font-bold text-2xl">{{$planningJour[$key]}}</span>
                             <span class="text-lg">{{$planningMoisAnnee[$key]}}</span>
                             <span class="text-lg font-bold">{{$plan['nom']}}</span>

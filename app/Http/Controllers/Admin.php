@@ -9,6 +9,7 @@ use App\Models\Partie;
 use App\Models\User;
 use App\Models\Question;
 use App\Models\Proposition;
+use App\Models\Niveau;
 use App\Models\Partiejoueur;
 use App\Http\Requests\creerFormEvaluation;
 use Carbon\Carbon;
@@ -18,74 +19,121 @@ class Admin extends Controller
    
     public function dashboard(Request $request){
 
-        // $partie = Partie::where('admin',auth()->id())
-        // ->where('dateDebut','>',now())
-        // ->get();
-        // $nbPartie = $partie->count();
+        $partie = Partie::where('admin',auth()->id())
+        ->where('dateDebut','>',now())
+        ->get();
+        $nbPartie = $partie->count();
 
-        // $totalEvaluation = Partie::where('admin',auth()->id())
-        // ->where('dateDebutHeure','<=',now())
-        // ->get();
-        // $totalEvaluationAchevee = $totalEvaluation->count();
+        $totalPartie = Partie::where('admin',auth()->id())
+        ->where('dateDebut','<=',now())
+        ->get();
+        $totalPartieAchevee = $totalPartie->count();
 
-        // $totalEvaluationCree = Partie::where('admin',auth()->id())
-        // ->count();
+        $totalPartieCree = Partie::where('admin',auth()->id())
+        ->count();
 
 
-        // $plans = Partie::orderBy('dateDebutHeure')
-        // ->where('admin', auth()->id())
-        // ->where('dateDebutHeure', '>=', now())
-        // ->paginate(6);
-
-        // $planElems = Partie::orderBy('dateDebutHeure')
-        // ->where('admin', auth()->id())
-        // ->where('dateDebutHeure', '>=', now())
-        // ->get();
-
-        // $planningJour=[];
-        // $planningMoisAnnee=[];
-        // foreach ($plans as $key => $plan) {
-        //    $planningJour[$key] = Carbon::parse($plan['dateDebutHeure'])->translatedFormat('j');
-        //    $planningMoisAnnee[$key] = Carbon::parse($plan['dateDebutHeure'])->translatedFormat('F Y');
-        // }
-        
-        
-        // // dd($planningJour, $planningMoisAnnee);
-
-        return view('admin.dashboard',[
-            // 'planElems' => $planElems,
-            // 'plans' => $plans,
-            // 'enattente' => $nbEvaluation,
-            // 'totalEvaluation' => $totalEvaluationCree,
-            // 'totalEvaluationAchevee' => $totalEvaluationAchevee,
-            // 'planningJour' => $planningJour,
-            // 'planningMoisAnnee' => $planningMoisAnnee,
-        ]);
-    }
-    public function parties(){
-        $parties = Partie::get();
-        //dd($parties);
-        return view('admin.evaluations',[
-            'parties' => $parties
-        ]);
-    }
-    public function planning(){
-        $plans = Partie::orderBy('dateDebutHeure')
+        $plans = Partie::orderBy('dateDebut')
         ->where('admin', auth()->id())
-        ->where('dateDebutHeure', '>=', now())
+        ->where('dateDebut', '>=', now())
         ->paginate(6);
 
-        $planElems = Partie::orderBy('dateDebutHeure')
+        $planElems = Partie::orderBy('dateDebut')
         ->where('admin', auth()->id())
-        ->where('dateDebutHeure', '>=', now())
+        ->where('dateDebut', '>=', now())
         ->get();
 
         $planningJour=[];
         $planningMoisAnnee=[];
         foreach ($plans as $key => $plan) {
-            $planningJour[$key] = Carbon::parse($plan['dateDebutHeure'])->translatedFormat('j');
-            $planningMoisAnnee[$key] = Carbon::parse($plan['dateDebutHeure'])->translatedFormat('F Y');
+           $planningJour[$key] = Carbon::parse($plan['dateDebut'])->translatedFormat('j');
+           $planningMoisAnnee[$key] = Carbon::parse($plan['dateDebut'])->translatedFormat('F Y');
         }
+        
+        
+        // // dd($planningJour, $planningMoisAnnee);
+
+        return view('admin.dashboard',[
+            'planElems' => $planElems,
+            'plans' => $plans,
+            'enattente' => $nbPartie,
+            'totalPartie' => $totalPartieCree,
+            'totalPartieAchevee' => $totalPartieAchevee,
+            'planningJour' => $planningJour,
+            'planningMoisAnnee' => $planningMoisAnnee,
+        ]);
+    }
+    public function test(Request $request){
+
+        $partie = Partie::where('admin',auth()->id())
+        ->where('dateDebut','>',now())
+        ->get();
+        $nbPartie = $partie->count();
+
+        $totalPartie = Partie::where('admin',auth()->id())
+        ->where('dateDebut','<=',now())
+        ->get();
+        $totalPartieAchevee = $totalPartie->count();
+
+        $totalPartieCree = Partie::where('admin',auth()->id())
+        ->count();
+
+
+        $plans = Partie::orderBy('dateDebut')
+        ->where('admin', auth()->id())
+        ->where('dateDebut', '>=', now())
+        ->paginate(6);
+
+        $planElems = Partie::orderBy('dateDebut')
+        ->where('admin', auth()->id())
+        ->where('dateDebut', '>=', now())
+        ->get();
+
+        $planningJour=[];
+        $planningMoisAnnee=[];
+        foreach ($plans as $key => $plan) {
+           $planningJour[$key] = Carbon::parse($plan['dateDebut'])->translatedFormat('j');
+           $planningMoisAnnee[$key] = Carbon::parse($plan['dateDebut'])->translatedFormat('F Y');
+        }
+        
+        
+        // // dd($planningJour, $planningMoisAnnee);
+
+        return view('admin.test',[
+            'planElems' => $planElems,
+            'plans' => $plans,
+            'enattente' => $nbPartie,
+            'totalPartie' => $totalPartieCree,
+            'totalPartieAchevee' => $totalPartieAchevee,
+            'planningJour' => $planningJour,
+            'planningMoisAnnee' => $planningMoisAnnee,
+        ]);
+    }
+    public function parties(){
+        $parties = Partie::get();
+        //dd($parties);
+        return view('admin.parties',[
+            'parties' => $parties
+        ]);
+    }
+    public function planning(){
+        $plans = Partie::orderBy('dateDebut')
+        ->where('admin', auth()->id())
+        ->where('dateDebut', '>=', now())
+        ->paginate(6);
+
+        $planElems = Partie::orderBy('dateDebut')
+        ->where('admin', auth()->id())
+        ->where('dateDebut', '>=', now())
+        ->get();
+
+        $planningJour=[];
+        $planningMoisAnnee=[];
+        foreach ($plans as $key => $plan) {
+           $planningJour[$key] = Carbon::parse($plan['dateDebut'])->translatedFormat('j');
+           $planningMoisAnnee[$key] = Carbon::parse($plan['dateDebut'])->translatedFormat('F Y');
+        }
+        
 
         return view('admin.planning',[
             'planElems' => $planElems,
@@ -105,7 +153,7 @@ class Admin extends Controller
             $propositions[] = Proposition::where('question',$question->id)->get();
         }
     
-        return view('admin.evaluation', [
+        return view('admin.partie', [
             'partie' => $partie,
             'propositions' => $propositions,
             'questions' => $questions
@@ -114,7 +162,10 @@ class Admin extends Controller
     
     public function AdminCreePartie(){
         Session()->forget('partie');
-        return view('admin.CreePartie');
+        $niveaux = Niveau::get();
+        return view('admin.CreePartie',[
+            'niveaux' =>$niveaux
+        ]);
     }
 
     public function AdminPostCreePartie(creerFormEvaluation $request)
@@ -129,6 +180,9 @@ class Admin extends Controller
         'date' => $donneesValidees['date'],
         'debut' => $donneesValidees['debut'],
         'duree' => $donneesValidees['duree'],
+        'niveau' => $donneesValidees['niveau'],
+        'description' => $donneesValidees['description'],
+        'joueurAnonyme' => $donneesValidees['joueurAnonyme'],
         'questions' => [],
     ];
 
@@ -154,33 +208,62 @@ public function AdminPostBilanPartie(Request $request)
     // Parcourir chaque question
     foreach ($partie['questions'] as $key => $question) {
         // Récupérer les corrections pour cette question à partir des données soumises
-        $corrections = $request->input('corrections.'. $key, []);
+        $corrections = $request->input('corrections.' . $key, []);
         
         // Mettre à jour les corrections dans le tableau d'évaluation
         $partie['questions'][$key]['corrections'] = $corrections;
     }
 
-    // Afficher ou traiter les corrections pour chaque question
+    // Afficher ou traiter les corrections pour chaque question (pour déboguer)
     foreach ($partie['questions'] as $key => $question) {
         echo "Corrections pour la question " . $key . ": ";
         print_r($question['corrections']);
         echo "<br>";
     }
+
+    // Valider et traiter les fichiers téléchargés
+    $miniature = $request->hasFile('miniature') ? $this->upload($request, 'miniature') : null;
+    $imageFond = $request->hasFile('imageFond') ? $this->upload($request, 'imageFond') : null;
+    $couleurFond = $request->input('couleurFond');
+
+    // Vous pouvez maintenant utiliser les chemins $miniaturePath, $imageFondPath, $couleurFondPath comme nécessaire
+    
+    $joueurAnonyme = $request->input('joueurAnonyme');
+    if ($joueurAnonyme) {
+        $partie['joueurAnonyme'] = $joueurAnonyme;
+    }else{
+        $partie['joueurAnonyme'] = 0;
+    }
+    $partie['description'] = $request->input('description');
+    $partie['miniature'] = $miniature;
+    $partie['imageFond'] = $imageFond;
+    $partie['couleurFond'] = $couleurFond;
+    // Mettre à jour la session avec les modifications apportées
     session()->put('partie', $partie);
-    // Debug pour vérifier les données d'évaluation mises à jour
-    $partie = $request->session()->get('partie');
-    $datetime = $partie['date'].' '.$partie['debut'].':00';
+    // dd($request->hasFile('miniature'));
+
+    // Insérer la nouvelle évaluation dans la base de données
+    $datetime = $partie['date'] . ' ' . $partie['debut'] . ':00';
+    $niveau = Niveau::where('nom',$partie['niveau'])->value('id');
     $newEvaluation = Partie::create([
         'nom' => $partie['nom'],
+        'description' => $partie['description'],
         'duree' => $partie['duree'],
         'dateDebut' => $datetime,
         'HeureDebut' => $partie['debut'],
+        'miniature' => $partie['miniature'],
+        'imageFond' => $partie['imageFond'],
+        'couleurFond' => $partie['couleurFond'],
+        'joueurAnonyme' => $partie['joueurAnonyme'],
+        'niveau' => $niveau,
         'admin' => Auth::user()->id,
         'visibilite' => 1,
     ]);
 
-    $idPartie = Partie::where('nom', $partie['nom'])->value('id');
+    // Récupérer l'ID de la partie nouvellement créée
+    $idPartie = $newEvaluation->id;
     
+    // Insérer chaque question et ses propositions dans la base de données
     foreach ($partie['questions'] as $question) {
         $questionCreate = Question::create([
             'libelle' => $question['libelle'],
@@ -188,26 +271,33 @@ public function AdminPostBilanPartie(Request $request)
             'partie' => $idPartie
         ]);
         
-        $idquestion = Question::where('libelle',$question['libelle'])->value('id');
+        $idQuestion = $questionCreate->id;
+        
+        // Insérer chaque proposition pour la question actuelle
         foreach ($question['propositions'] as $proposition) {
-            $proposition = Proposition::create([
+            $newProposition = Proposition::create([
                 'libelle' => $proposition,
-                'question' => $idquestion,
+                'question' => $idQuestion,
                 'estCorrecte' => 0,
             ]);
-
-            foreach ($question['corrections'] as $key => $correct) {
-                $idPropo = Proposition::where('libelle',$correct)->latest('id')->first();
-               if($idPropo){
-                    $idPropo->estCorrecte = 1;
-                    $idPropo->save();
-               }
-            }
-
         }
+
+        // Marquer les propositions correctes pour cette question
+        foreach ($question['corrections'] as $correct) {
+            $idPropo = Proposition::where('libelle', $correct)->where('question', $idQuestion)->latest('id')->first();
+            if ($idPropo) {
+                $idPropo->estCorrecte = 1;
+                $idPropo->save();
+            }
+        }
+
+        
     }
-    return to_route('AdminParties')->with('success','L\'évaluation '.$partie['nom'].' a été créée avec succès!');
+
+    // Rediriger avec un message de succès
+    return redirect()->route('AdminParties')->with('success', 'L\'évaluation ' . $partie['nom'] . ' a été créée avec succès!');
 }
+
 
 
     public function AdminBilanPartie(Request $request){
@@ -219,97 +309,31 @@ public function AdminPostBilanPartie(Request $request)
             'partie'=>$partie
         ]);
     }
-    public function AdminValidationPartie(Request $request){
-        $partie = $request->session()->get('partie');
-        $datetime = $partie['date'].' '.$partie['debut'];
-        $newEvaluation = Partie::create([
-            'nom' => $partie['nom'],
-            'duree' => $partie['duree'],
-            'dateDebutHeure' => $datetime,
-            'admin' => Auth::user()->id,
-            'matiere' => Matiere::where('nom',$partie['matieres'][0])->value('id')
-        ]);
-        $idPartie = Partie::where('nom', $partie['nom'])->value('id');
-        foreach ($partie['classes'] as $classe) {
-            $partiejoueur = Partiejoueur::create([
-                'partie' => $idPartie,
-                'classe' => Classe::where('nom',$classe)->value('id')
-            ]);
+
+    public function upload(Request $request, $input): string
+    {
+        $path = " ";
+        if ($request->hasFile($input)) {
+            // Récupérer le fichier
+            $file = $request->file($input);
+            
+            switch ($input) {
+                case 'miniature':
+                    $path = $file->store('miniatures', 'public');
+                    break;
+                
+                case 'imageFond':
+                    $path = $file->store('imageFonds', 'public');
+                    break;
+
+                default:
+                    break;
+            }
+            // Stocker le fichier dans le répertoire 'public/uploads'
+            
+            // $path contiendra le chemin relatif du fichier stocké
             
         }
-        foreach ($partie['questions'] as $question) {
-            $question = Question::create([
-                'libelle' => $question['libelle'],
-                'nombrepoint' => $question['points'],
-                'partie' => $idPartie
-            ]);
-            
-            $idquestion = Question::where('libelle',$question['libelle'])->value('id');
-            foreach ($question['propositions'] as $proposition) {
-                $proposition = Proposition::create([
-                    'libelle' => $proposition['libelle'],
-                    'question' => $idquestion
-                ]);
-            }
-        }
+        return $path;
     }
-
-    public function classes(){
-        $parties = Partie::where('admin', auth()->id())->pluck('id');
-
-        $classes=[];
-        $etudiant=[];
-
-        foreach ($parties as $key => $partie) {
-            $classes[$key] = Partiejoueur::where('partie', $partie)
-            ->distinct()
-            ->pluck('classe')
-            ->toArray();
-        }
-        $lesClasses =[];
-        $classeTab = collect($classes)->flatten()->unique()->values()->all();
-        foreach ($classeTab as $key => $classe) {
-            $lesClasses[$key] = Classe::where('id', $classe)->first();
-            $etudiant = User::where('status', 'etudiant')
-            ->where('classe',$classe)
-            ->get();
-        }
-
-        dd($etudiant);
-       
-        return view('admin.classes', [
-            'classeList' => $lesClasses
-        ]);
-    }
-    public function classesEvalu($id){
-        $classe = Classe::where('id',$id)->first();
-        $partieIds = Partiejoueur::where('classe',$id)->pluck('partie');
-        $parties = [];
-        $matieres = [];
-        $dates = [];
-        foreach ($partieIds as $key => $partieId) {
-            // Récupérer l'évaluation par son ID
-            $partie = Partie::find($partieId);
-    
-            if ($partie) {
-                $parties[$key] = $partie;
-    
-                // Récupérer la matière associée à cette évaluation
-                $matieres[$key] = Matiere::find($partie->matiere);
-    
-                // Convertir la date de début en format souhaité (si nécessaire)
-                $dates[$key] = Carbon::parse($partie->dateDebutHeure)->translatedFormat('j F Y');
-            }
-        }
-        // dd($matieres);
-    
-        return view('admin.classeView',[
-            'classe' => $classe,
-            'matieres' => $matieres,
-            'evaluations' => $partie,
-            'date' => $dates,
-        ]);
-    }
-
-    
 }

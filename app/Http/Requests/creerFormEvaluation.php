@@ -23,6 +23,9 @@ class creerFormEvaluation extends FormRequest
     {
         return [
             'nom' => 'required|string|max:255',
+            'description' => 'required|string|max:2500',
+            'niveau' => 'required|string|max:255',
+            'joueurAnonyme' => 'boolean',
             'date' => 'required|date|after_or_equal:today',
             'debut' => 'required|date_format:H:i',
             'duree' => 'required|integer|min:1',
