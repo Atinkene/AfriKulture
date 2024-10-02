@@ -26,6 +26,7 @@ return new class extends Migration
             $table->boolean('joueurAnonyme');
             $table->string('description');
             $table->string('miniature');
+            $table->string('type');
             $table->string('imageFond');
             $table->string('couleurFond');
             $table->foreignId('niveau')->constrained('niveaus')->onDelete('restrict')->onUpdate('restrict')->nullable();

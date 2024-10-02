@@ -1,7 +1,7 @@
 @extends('joueur.layout')
 @section('content')
-    <div class="w-[95%] m-auto max-h-screen overflow-visible mt-20">
-       <div class="w-full bg-white">
+    <div class="w- m-auto max-h-screen overflow-visible">
+       <div class="w-full ">
             <span class="font-bold text-blue-900 text-lg flex justify-center items-center">
                 Mes parties
             </span>
@@ -16,7 +16,7 @@
                 <tbody class="text-center ">
                     @foreach ($parties as $key => $partie)
                         <tr class=" h-12 rounded-lg">
-                            <td class="font-bold "><a href="/">{{$partie->nom}}</a></td>
+                            <td class="font-bold"><a href="/">{{$partie->nom}}</a></td>
                             <td class="">{{$note[$key]}}</td>
                             
                         </tr>

@@ -14,5 +14,9 @@ class Resultat extends Model
         'partie',
         'rang',
         'icone',
-];
+    ];
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'joueur');
+    }
 }

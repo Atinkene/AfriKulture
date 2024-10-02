@@ -1,4 +1,4 @@
-<div class="relative " style="">
+<div id="contact" class="relative " style="">
   <div class="flex flex-col justify-center items-center py-24">
       <div class="flex flex-col justify-center items-center w-2/3 space-y-5">
           <span class="text-5xl text-red-900 font-bold">Nous contacter</span>

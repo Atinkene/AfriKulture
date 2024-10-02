@@ -1,5 +1,5 @@
-<div class="h-96 bg-no-repeat bg-bottom bg-fixed bg-cover w-full flex justify-center items-center text-white shadow-inner" style="background-image: url({{asset('/img/4.png')}})">
-    <div class="flex flex-col justify-center items-center backdrop-filter backdrop-blur-lg h-full">
+<div id="apropos" class=" bg-no-repeat bg-bottom bg-fixed bg-cover w-full flex justify-center items-center text-white shadow-inner" style="background-image: url({{asset('/img/4.png')}})">
+    <div class="flex px-24 py-28 flex-col justify-center items-center backdrop-filter backdrop-blur-lg h-full">
         <div class="flex flex-col justify-center items-center w-11/12 space-y-5 ">
             <span class="text-5xl  font-bold">À propos</span>
             <p class="text-md opacity-75 font-semibold italic">

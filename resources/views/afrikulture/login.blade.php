@@ -5,18 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     @vite('resources/css/app.css')
-
-    <title>E-Laab | Connexion</title>
+    <title>{{$title}}</title>
 </head>
-<body class="bg-fi" >
+<body class="bg-" >
     {{-- style="background-image: url({{asset('img/12.png')}})" --}}
     @auth
         {{-- {{Auth::user()}} --}}
     @endauth
     <div class="h-screen flex justify-center items-center ">
        <div class="w-full h-full flex justify-center items-center" >
-        <div class="backdrop-filter backdrop-blur-lg ring-8 ring-opacity-20 ring-[#e27b06] flex justify-center items-center rounded-t-full h-5/6 w-2/3 shadow-lg shadow-black pt-2  " style="background-image: url({{asset('img/4.png')}})" >
-            <div class="w-full flex justify-center items-center backdrop-blur-sm h-full rounded-t-full ">
+        <div class="backdrop-filter backdrop-blur-lg ring-8 ring-opacity-20 ring-[#e27b06] flex justify-center items-center rounded-full h-5/6 w-2/3 shadow-lg shadow-black pt-2  " style="background-image: url({{asset('img/4.png')}})" >
+            <div class="w-full flex justify-center items-center backdrop-blur-sm h-full rounded-full ">
                 <div class="w-2/3 ">
                     <form class="text-center space-y-0 w-full" action="" method="post">
                         @csrf
@@ -32,7 +31,11 @@
                             <input class="text-center text-white text-lg h-10 w-1/2 bg-[#722714] rounded-lg shadow-lg font-semibold shadow-black-900/50 cursor-pointer  hover:bg-[#e27b06]" type="submit" name="" id="" value="Se connecter"><br><br>
                             
                         </div>
-                        <a class="text-white font-semibold hover:underline" href="">Mot de passe oublié?</a>
+                        <div class="grid grid-cols-1 gap-3">
+                            <a class="text-white font-semibold hover:underline" href="">Mot de passe oublié?</a>
+                            <a class="text-white font-semibold hover:underline" href="{{ route('register') }}">S'inscrire </a>
+    
+                        </div>
                     </form>
                 </div>
             </div>

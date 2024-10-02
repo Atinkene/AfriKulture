@@ -12,5 +12,10 @@ class Question extends Model
         'libelle',
         'nombrepoint',
         'partie'
-];
+    ];
+    public function propositions()
+    {
+        return $this->hasMany(Proposition::class, 'question');
+    }
+
 }

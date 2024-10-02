@@ -23,6 +23,7 @@ class creerFormEvaluation extends FormRequest
     {
         return [
             'nom' => 'required|string|max:255',
+            'type' => 'required|string|max:255',
             'description' => 'required|string|max:2500',
             'niveau' => 'required|string|max:255',
             'joueurAnonyme' => 'boolean',

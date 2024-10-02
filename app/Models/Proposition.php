@@ -12,5 +12,9 @@ class Proposition extends Model
         'libelle',
         'question',
         'estCorrecte'
-];
+    ];
+    public function question()
+    {
+        return $this->belongsTo(Question::class, 'question');
+    }
 }

@@ -13,6 +13,7 @@ class Niveau extends Model
     protected $fillable = [
         'nom',
         'force',
-        'icone'
+        'icone',
 ];
+
 }

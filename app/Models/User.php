@@ -47,4 +47,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function choix()
+    {
+        return $this->hasMany(Choix::class, 'joueur');
+    }
+
+    public function resultats()
+    {
+        return $this->hasMany(Resultat::class, 'joueur');
+    }
 }
